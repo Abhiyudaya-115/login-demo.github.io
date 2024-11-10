@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0%;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    perspective: 600px;
+}
+
+.login-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transform: scale(0.8);
+    transition: transform 0.5s ease-in-out;
+}
+
+.login-box:hover {
+    transform: scale(1);
+}
+
+.login-title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    animation: slideUp 1s ease-in-out;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.input-group input {
+    width: 85%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-btn {
+    width: 100%;
+    height: 40px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    animation: zoomIn 1s ease-in-out;
+}
+
+.login-btn:hover {
+    background-color: #3e8e41;
+}
+
+.social-login {
+    margin-top: 20px;
+}
+
+.social-btn {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.social-btn.facebook {
+    background-color: #3b5998;
+    color: #fff;
+}
+
+.social-btn.google {
+    background-color: #dd4b39;
+    color: #fff;
+}
+
+.social-btn:hover {
+    opacity: 0.9;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0.8);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    animation: animate 20s ease-in-out infinite;
+}
+
+
+
+@keyframes animate {
+    0% {
+        background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    }
+    20% {
+        background-image: linear-gradient(to top, #f7d2c4 0%, #f2c6de 99%, #f2c6de 100%);
+    }
+    40% {
+        background-image: linear-gradient(to top, #c9e4ca 0%, #e1eec3 99%, #e1eec3 100%);
+    }
+    60% {
+        background-image: linear-gradient(to top, #87ceeb 0%, #87cefa 99%, #87cefa 100%);
+    }
+    80% {
+        background-image: linear-gradient(to top, #ff99cc 0%, #ffccff 99%, #ffccff 100%);
+    }
+    100% {
+        background-image: linear-gradient(to top, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    }
+}
+.voice-btn {
+    position: absolute;
+    right: 0;
+    top: 25px;
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+#success-message {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#success-message img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="background-animation"></div>
+    <div class="login-container">
+        <div class="login-box">
+            <h2 class="login-title">Login</h2>
+            <form>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                    <button class="voice-btn" id="voice-username">Voice</button>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                    <button class="voice-btn" id="voice-password">Voice</button>
+                </div>
+                <button type="submit" id="login-btn" class="login-btn">Login</button>
+            </form>
+            <div id="success-message" style="display: none;">
+                <img src="success.gif" alt="Logged in successfully">
+                <p>Logged in successfully!</p>
+            </div>
+            <div class="social-login">
+                <a href="#" class="social-btn facebook"> Continue as Facebook</a>
+                <a href="#" class="social-btn google"> or Google</a>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+     // Voice typing functionality
+     const voiceUsername = document.getElementById('voice-username');
+        const voicePassword = document.getElementById('voice-password');
+        const usernameInput = document.getElementById('voice-login');
+        const loginBtn = document.getElementById('login-btn');
+        const successMessage = document.getElementById('success-message');
+        
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 3000);
+        });
+</script>
+</html>
